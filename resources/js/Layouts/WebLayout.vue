@@ -6,7 +6,6 @@
     </header>
     <div class="container">
         <slot />
-        <cart-count />
     </div>
 </template>
 <script>
