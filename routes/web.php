@@ -23,4 +23,4 @@ Route::resources([
     'projects' => ProjectController::class,
 ]);
 
-Route::post('re-order', [TaskController::class, 'order'])->name('tasks.order');
+Route::post('re-order', [TaskController::class, 'reOrder'])->name('tasks.order');

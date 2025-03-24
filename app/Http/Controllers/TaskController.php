@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\Project;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -31,7 +32,7 @@ class TaskController extends Controller
     /**
      * Store a new task.
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request): RedirectResponse
     {
         $task = Task::create($request->validated());
 
@@ -41,7 +42,7 @@ class TaskController extends Controller
     /**
      * Update an existing task.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
         $task->update($request->validated());
 
@@ -51,7 +52,7 @@ class TaskController extends Controller
     /**
      * Delete a task.
      */
-    public function destroy(Task $task)
+    public function destroy(Task $task): RedirectResponse
     {
         $task->delete();
 
@@ -61,7 +62,7 @@ class TaskController extends Controller
     /**
      * Delete all tasks.
      */
-    public function destroyAll()
+    public function destroyAll(): RedirectResponse
     {
         Task::truncate();
 
@@ -71,7 +72,7 @@ class TaskController extends Controller
     /**
      * Reorder tasks based on the new order.
      */
-    public function order(Request $request)
+    public function reOrder(Request $request): RedirectResponse
     {
         $newOrder = $request->input('new_order');
 

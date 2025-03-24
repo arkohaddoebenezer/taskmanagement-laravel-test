@@ -28,14 +28,14 @@ class Task extends Model
     protected function formattedCreatedAt(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes) => Carbon::parse($attributes['created_at'])->diffForHumans(),
+            get: fn($value, $attributes) => Carbon::parse($attributes['created_at'])->diffForHumans(),
         );
     }
 
     protected function formattedUpdatedAt(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes) => Carbon::parse($attributes['updated_at'])->diffForHumans(),
+            get: fn($value, $attributes) => Carbon::parse($attributes['updated_at'])->diffForHumans(),
         );
     }
 }
