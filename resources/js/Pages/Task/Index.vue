@@ -17,7 +17,7 @@
             <div class="mx-2 card-body">
                 <h3>Task Management</h3>
                 <!-- Project Selection or Creation -->
-                <div v-if="createProjectMode" class="flex items-center gap-2 mt-4">
+                <div v-if="!createProjectMode" class="flex items-center gap-2 mt-4">
                     <label for="project" class="whitespace-nowrap">Select Project:</label>
                     <select v-model="selectedProject" @change="fetchTasks" id="project" class="form-control">
                         <option value="all">All Projects</option>
@@ -156,7 +156,7 @@ export default {
             },
             confirmDeleteActive: false,
             deleteTaskRow: null,
-            createProjectMode: this.prop_projects.length > 0,
+            createProjectMode: this.prop_projects.length <= 0,
         };
     },
     methods: {
@@ -198,9 +198,11 @@ export default {
                 preserveScroll: true,
                 onSuccess: () => {
                     this.projects = [...this.prop_projects],
-                        this.form.reset();
+                    this.form.project_id = this.selected_project_id;
+                    this.form.project_name='';
                     this.createProjectMode = false;
                     this.selectedProject = this.selected_project_id;
+                    this.tasks=[];
                 },
             });
 
